@@ -5,16 +5,18 @@
         <div class="container-fluid">
           <div class="container">
             <br />
-            <div class="row">
-              <div class="col-md">
-                <br />
-                <h2 class="text-center">รายการที่ได้ร้องขอ ( นักเรียน )</h2>
-                <br />
-                <div class="router">
-                  <Waitingpost  :waitingposts="waitingposts" />
-                </div>
-              </div>
+            <br />
+            <h2 class="text-center">รายการที่ได้ร้องขอ ( นักเรียน )</h2>
+            <br />
+            <br />
+            <div class="router">
+              <Waitingpost :waitingposts="waitingposts" />
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </b-tab>
@@ -22,16 +24,18 @@
         <div class="container-fluid">
           <div class="container">
             <br />
-            <div class="row">
-              <div class="col-md">
-                <br />
-                <h2 class="text-center">รายการที่กำลังดำเนินการ ( นักเรียน )</h2>
-                <br />
-                <div class="router">
-                  <DoingStudent :doingStudents="doingStudents" />
-                </div>
-              </div>
+            <br />
+            <h2 class="text-center">รายการที่กำลังดำเนินการ ( นักเรียน )</h2>
+            <br />
+            <br />
+            <div class="router">
+              <DoingStudent :doingStudents="doingStudents" />
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </b-tab>
@@ -39,16 +43,18 @@
         <div class="container-fluid">
           <div class="container">
             <br />
-            <div class="row">
-              <div class="col-md">
-                <br />
-                <h2 class="text-center">รายการที่ติวเสร็จแล้ว ( นักเรียน )</h2>
-                <br />
-                <div class="router">
-                  <DoneStudent :doneStudents="doneStudents" />
-                </div>
-              </div>
+            <br />
+            <h2 class="text-center">รายการที่ติวเสร็จแล้ว ( นักเรียน )</h2>
+            <br />
+            <br />
+            <div class="router">
+              <DoneStudent :doneStudents="doneStudents" />
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </b-tab>
@@ -56,16 +62,18 @@
         <div class="container-fluid">
           <div class="container">
             <br />
-            <div class="row">
-              <div class="col-md">
-                <br />
-                <h2 class="text-center">รายการที่ยกเลิกแล้ว ( นักเรียน )</h2>
-                <br />
-                <div class="router">
-                  <CancleStudent :cancleStudents="cancleStudents" />
-                </div>
-              </div>
+            <br />
+            <h2 class="text-center">รายการที่ยกเลิกแล้ว ( นักเรียน )</h2>
+            <br />
+            <br />
+            <div class="router">
+              <CancleStudent :cancleStudents="cancleStudents" />
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </b-tab>
@@ -99,18 +107,18 @@ const strapi = new Strapi(apiUrl);
 import Waitingpost from "../components/Waitingpost";
 import DoingStudent from "../components/DoingStudent";
 import CancleStudent from "../components/CancleStudent";
-import DoneStudent from "../components/DoneStudent"
+import DoneStudent from "../components/DoneStudent";
 export default {
   components: {
     Waitingpost,
     DoingStudent,
     CancleStudent,
-    DoneStudent
+    DoneStudent,
   },
   computed: {
     username() {
       return this.$store.getters["auth/username"];
-    }
+    },
   },
   data() {
     return {
@@ -133,8 +141,8 @@ export default {
         tutorName: "",
         username: "",
         imageUrl: "",
-        email: ""
-      }
+        email: "",
+      },
     };
   },
   async created() {
@@ -143,9 +151,9 @@ export default {
         "http://localhost:1337/orders?status_in=waiting&studentusername_in=" +
           this.username
       )
-      .then(response => {
+      .then((response) => {
         this.waitingposts = response.data; //order
-        console.log("get orders รายหารร้องขอวนักเรียน success:" );
+        console.log("get orders รายหารร้องขอวนักเรียน success:");
         console.log(this.waitingposts);
         // for (let elm of this.waitingposts) {
         //   console.log(elm.postId);
@@ -168,7 +176,7 @@ export default {
           this.username +
           "&doingstatus_in=false"
       )
-      .then(response => {
+      .then((response) => {
         this.doingStudents = response.data; // orderที่มีสถานะกำลีงดำเนินการของนักเรียน แต่ยังไม่เสร็จ (ให้ยังไม่เสร็จเป็น fale เสร็จเป้ข true)
         console.log("get ordersที่ถูกยกเลิก");
         console.log(this.doingStudents);
@@ -179,7 +187,7 @@ export default {
           this.username +
           "&doingstatus_in=true"
       )
-      .then(response => {
+      .then((response) => {
         this.doneStudents = response.data; // orderที่มีสถานะทำเสร็จแล้วของนักเรียน (ให้ยังไม่เสร็จเป็น fale เสร็จเป้ข true)
         console.log("get ordersดำเนินการเสร็จแล้ว");
         console.log(this.doneStudents);
@@ -189,7 +197,7 @@ export default {
         "http://localhost:1337/orders?status_in=cancle&studentusername_in=" +
           this.username
       )
-      .then(response => {
+      .then((response) => {
         this.cancleStudents = response.data; // orderที่มีสถานะถูกยกเลิก ของนักเรียน
         console.log("get ordersที่ถูกยกเลิก");
         console.log(this.cancleStudents);
@@ -202,8 +210,8 @@ export default {
       } else {
         return ["text-light"];
       }
-    }
-  }
+    },
+  },
 };
 </script >
 

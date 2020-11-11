@@ -4,9 +4,9 @@
       <div class="container text-center my-auto">
         <h1 class="mb-1">ค้นหาติวเตอร์</h1>
         <h3 class="mb-5">
-          <em>A Free Bootstrap Theme by Start Bootstrap</em>
+          <em>เว็บไซต์ค้นหาติวเตอร์ที่ดีสุดในประเทศไทย</em>
         </h3>
-        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">ลงทะเบียน</a>
+        <a class="btn btn-primary btn-xl js-scroll-trigger" href="/signup">ลงทะเบียน</a>
       </div>
       <div class="overlay"></div>
     </header>
@@ -15,30 +15,21 @@
       <div class="container text-center">
         <div class="row">
           <div class="col-lg-6 mx-auto">
-            
-            <h2>ผู้เรียน</h2>
+            <h2 class="mb-5">ผู้เรียน</h2>
 
-            <p class="lead mb-5">
-              This theme features a flexible, UX friendly sidebar menu and stock photos from our friends at
-              <a
-                href="https://unsplash.com/"
-              >Unsplash</a>!
-            </p>
+            <p
+              class="lead mb-5"
+            >ใช้งานฟรีในการค้นหาติวเตอร์ได้ตามความต้องการและค้นหาตามเรตติ้งของติวเตอร์</p>
           </div>
           <div class="col-lg-6 mx-auto">
-            
-            <h2>ติวเตอร์</h2>
+            <h2 class="mb-5">ติวเตอร์</h2>
 
-            <p class="lead mb-5">
-              This theme features a flexible, UX friendly sidebar menu and stock photos from our friends at
-              <a
-                href="https://unsplash.com/"
-              >Unsplash</a>!
-            </p>
+            <p
+              class="lead mb-5"
+            >เป็นแหล่งหารายได้เสริมสำหรับติวเตอร์และติวเตอร์สามารถประกาศค้นหานักเรียนฟรี(ไม่มีค่าใช้จ่าย)</p>
           </div>
         </div>
-            <a class="btn btn-dark btn-xl js-scroll-trigger" href="#services">What We Offer</a>
-
+        <a class="btn btn-dark btn-xl js-scroll-trigger" href="/search">ดูประกาศ</a>
       </div>
     </section>
 
@@ -52,51 +43,39 @@
         <div class="row">
           <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
             <span class="service-icon rounded-circle mx-auto mb-3">
-              <i class="icon-screen-smartphone"></i>
+              <font-awesome-icon fas icon="user-plus" />
             </span>
             <h4>
-              <strong>Responsive</strong>
+              <strong>ลงทะเบียน</strong>
             </h4>
-            <p class="text-faded mb-0">Looks great on any screen size!</p>
           </div>
           <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
             <span class="service-icon rounded-circle mx-auto mb-3">
-              <i class="icon-pencil"></i>
+              <font-awesome-icon fas icon="sign-in-alt" />
             </span>
             <h4>
-              <strong>Redesigned</strong>
+              <strong>ล๊อกอินเข้าสู่ระบบ</strong>
             </h4>
-            <p class="text-faded mb-0">Freshly redesigned for Bootstrap 4.</p>
           </div>
           <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
             <span class="service-icon rounded-circle mx-auto mb-3">
-              <i class="icon-like"></i>
+              <font-awesome-icon fas icon="mouse" />
             </span>
             <h4>
-              <strong>Favorited</strong>
+              <strong>สร้าง/เลือกโพสประกาศ</strong>
             </h4>
-            <p class="text-faded mb-0">
-              Millions of users
-              <i class="fas fa-heart"></i>
-              Start Bootstrap!
-            </p>
           </div>
           <div class="col-lg-3 col-md-6">
             <span class="service-icon rounded-circle mx-auto mb-3">
-              <i class="icon-mustache"></i>
-             
-                <font-awesome-icon far icon="spinner" />
+              <font-awesome-icon fas icon="reply" />
             </span>
             <h4>
-              <strong>Question</strong>
+              <strong>รอการตอบรับ</strong>
             </h4>
-            <p class="text-faded mb-0">I mustache you a question...</p>
           </div>
         </div>
       </div>
     </section>
-
-
   </div>
 </template>
 <script>
@@ -188,7 +167,6 @@ h6 {
 
 /* ยังไม่เพิ่ม */
 
-
 .masthead {
   min-height: 30rem;
   position: relative;
@@ -224,7 +202,7 @@ h6 {
 
 .service-icon {
   background-color: #fff;
-  color: #1D809F;
+  color: #1d809f;
   height: 7rem;
   width: 7rem;
   display: block;
@@ -233,20 +211,24 @@ h6 {
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
 }
 a {
-  color: #1D809F;
+  color: #1d809f;
 }
 
-a:hover, a:focus, a:active {
+a:hover,
+a:focus,
+a:active {
   color: #155d74;
 }
 
 .btn-primary {
-  background-color: #1D809F !important;
-  border-color: #1D809F !important;
+  background-color: #1d809f !important;
+  border-color: #1d809f !important;
   color: #fff !important;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
   background-color: #155d74 !important;
   border-color: #155d74 !important;
 }
@@ -257,7 +239,9 @@ a:hover, a:focus, a:active {
   color: #fff !important;
 }
 
-.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
   background-color: #ba9106 !important;
   border-color: #ba9106 !important;
 }
@@ -272,16 +256,15 @@ a:hover, a:focus, a:active {
 }
 
 .bg-primary {
-  background-color: #1D809F !important;
+  background-color: #1d809f !important;
 }
 
 .text-primary {
-  color: #1D809F !important;
+  color: #1d809f !important;
 }
 
 .text-secondary {
   color: #ecb807 !important;
 }
-
 </style>
 

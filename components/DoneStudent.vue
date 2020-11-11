@@ -4,14 +4,14 @@
       <hr />
       <div class="row pointer">
         <div class="col-md-3">
-          <nuxt-link :to="'detail/' + doneStudent.postId">
+          <nuxt-link :to="'detail/' + doneStudent.announcementpost.id">
             <img class="card-img-left img-fluid" :src="doneStudent.announcementpost.imageUrl" alt />
           </nuxt-link>
         </div>
 
         <div class="col">
           <nuxt-link
-            :to="'detail/' + doneStudent.postId"
+            :to="'detail/' + doneStudent.announcementpost.id"
             style="text-decoration: none;
   color: black;"
           >
@@ -23,7 +23,7 @@
 
         <div class="col-2-auto">
           <nuxt-link
-            :to="'detail/' + doneStudent.postId"
+            :to="'detail/' + doneStudent.announcementpost.id"
             style="text-decoration: none;
   color: black;"
           >
@@ -32,10 +32,22 @@
               class="card-text"
             >{{ doneStudent.announcementpost.tutorName ||'No description provided' }}</p>
           </nuxt-link>
+          <label for="rating"><h4>Rating:</h4></label>
+          <b-form-rating
+            id="rating-inline"
+            inline
+            v-model="doneStudent.announcementpost.meanRating"
+            readonly
+            show-value
+            no-border
+            precision="2"
+          ></b-form-rating>
         </div>
 
         <div class="col-auto">
-          <b-button  :to="'reviewOrder/' + doneStudent.id" squared variant="info" @click="review()">รีวิว</b-button>
+          <b-button   :to="'reviewOrder/' + doneStudent.id" squared variant="info" @click="review()">รีวิว</b-button>
+          <!-- <b-button  v-if="doneStudent.rating != null"   squared variant="success" >รีวิวแล้ว</b-button> -->
+
         </div>
       </div>
     </div>
@@ -81,4 +93,8 @@ export default {
   }
 };
 </script>
-
+<style  scoped>
+img{
+  height: 10rem;
+}
+</style>

@@ -24,6 +24,16 @@
           <h4>ประกาศของ</h4>
           <p class="card-text">{{ listpost.tutorName ||'No description provided' }}</p>
         </nuxt-link>
+        <label for="rating"><h4>Rating:</h4></label>
+          <b-form-rating
+            id="rating-inline"
+            inline
+            v-model="listpost.meanRating"
+            readonly
+            show-value
+            no-border
+            precision="2"
+          ></b-form-rating>
       </div>
 
       <div class="col-auto">
@@ -68,5 +78,9 @@ export default {
   }
 };
 </script>
-
+<style  scoped>
+img{
+  height: 10rem;
+}
+</style>
 

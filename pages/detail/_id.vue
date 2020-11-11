@@ -4,20 +4,24 @@
       <div class="col">
         <div class="row title align-items-center">
           <div class="col-2"></div>
-          <h1 class="text-middle col">{{announcementposts.name}}</h1>
+          <h1 class="text-middle col">{{ announcementposts.name }}</h1>
         </div>
         <div class="row description">
           <div class="col-2"></div>
-          <p class="col">{{announcementposts.description}}</p>
+          <p class="col">{{ announcementposts.description }}</p>
         </div>
       </div>
 
-      <b-button squared variant="danger" class="col-1 b" @click="pushpost()">เลือก</b-button>
+      <b-button squared variant="danger" class="col-1 b" @click="pushpost()"
+        >เลือก</b-button
+      >
       <b-modal ref="my-modal" hide-footer title="Using Component Methods">
         <div class="d-block text-center">
           <h3>Hello From My Modal!</h3>
         </div>
-        <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
+        <b-button class="mt-3" variant="outline-danger" block @click="hideModal"
+          >Close Me</b-button
+        >
       </b-modal>
 
       <div class="col-1"></div>
@@ -27,64 +31,117 @@
     <div class="row">
       <!-- <div class="col-1"></div> -->
       <ul class="list-group col-7">
-        <li class="list-group-item list-group-item-dark">เนื้อหาและข้อมูลประกอบ</li>
+        <li class="list-group-item list-group-item-dark">
+          เนื้อหาและข้อมูลประกอบ
+        </li>
         <li class="list-group-item c1">
-          <pre>
-            {{detail}}
-        </pre>
+          <pre>{{ detail }}</pre>
         </li>
       </ul>
       <ul class="list-group col-5">
-        <li class="list-group-item list-group-item-dark">ข้อมูลส่วนตัวครูกวดวิชา</li>
+        <li class="list-group-item list-group-item-dark">
+          ข้อมูลส่วนตัวครูกวดวิชา
+        </li>
         <li class="list-group-item c2">
           <b-media tag="li">
             <template v-slot:aside>
-              <b-img blank blank-color="#bac" width="64" alt="placeholder"></b-img>
+              <b-img
+                blank
+                blank-color="#bac"
+                width="64"
+                alt="placeholder"
+              ></b-img>
             </template>
 
-            <h5 class="mt-3 mb-0">{{turorInformation.fname }} {{turorInformation.lname}}</h5>
+            <h5 class="mt-3 mb-0">
+              {{ turorInformation.fname }} {{ turorInformation.lname }}
+            </h5>
           </b-media>
           <br />
           <form>
             <div class="form-group row">
               <div class="col-1"></div>
-              <label for="staticEmail" class="col-sm-2-auto">วุฒิการศึกษา:</label>
+              <label for="staticEmail" class="col-sm-2-auto"
+                >วุฒิการศึกษา:</label
+              >
               <div class="col-sm-9">
-                <p>{{turorInformation.education}}</p>
+                <p>{{ turorInformation.education }}</p>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
-              <label for="inputPassword" class="col-sm-2-auto">เบอร์โทรศัพท์</label>
+              <label for="inputPassword" class="col-sm-2-auto"
+                >เบอร์โทรศัพท์</label
+              >
               <div class="col-sm-9">
-                <p>{{turorInformation.phone}}</p>
+                <p>{{ turorInformation.phone }}</p>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
               <label for="inputPassword" class="col-sm-2-auto">E-mail:</label>
               <div class="col-sm-9">
-                <p>{{turorInformation.email}}</p>
+                <p>{{ turorInformation.email }}</p>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
-              <label for="inputPassword" class="col-sm-2-auto">ประสบการณ์:</label>
+              <label for="inputPassword" class="col-sm-2-auto"
+                >ประสบการณ์:</label
+              >
               <div class="col-sm-9">
-                <p>{{announcementposts.experienceName}}</p>
+                <p>{{ announcementposts.experienceName }}</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-1"></div>
+              <label for="inputPassword" class="col-sm-2-auto"
+                >คะแนนเรตติ้ง:</label
+              >
+              <div class="col-sm-9">
+                <b-form-rating
+                  id="rating-inline"
+                  inline
+                  v-model="announcementposts.meanRating"
+                  readonly
+                  show-value
+                  no-border
+                  precision="2"
+                ></b-form-rating>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-1"></div>
               <label for="inputPassword" class="col-sm-2-auto">จังหวัด:</label>
               <div class="col-sm-9">
-                <p>{{announcementposts.provinceName}}</p>
+                <p>{{ announcementposts.provinceName }}</p>
               </div>
             </div>
           </form>
         </li>
       </ul>
       <!-- <div class="col-1"></div> -->
+    </div>
+    <label for="comment"><h5 class="mt-0 ml-3">REVIEW</h5></label>
+    <div
+      class="ml-3 mr-3"
+      v-for="comment in announcementposts.orders"
+      :key="comment.id"
+    >
+      <b-alert show
+        ><b>{{ comment.studentusername }} :</b> {{ comment.review }}
+        <p class="mb-0 mt-3" ><b-form-rating
+        variant="warning"
+        id="rating-inline"
+        inline
+        v-model="comment.rating"
+        readonly
+        show-value
+        no-border
+        precision="2"
+      ></b-form-rating></p>
+        </b-alert>
+   
     </div>
   </div>
 </template>
@@ -136,7 +193,8 @@ export default {
       turorInformation: "",
       haveornot: false,
       postid: null,
-      orderpostid: ""
+      orderpostid: "",
+      rating: "",
     };
   },
   computed: {
@@ -145,21 +203,22 @@ export default {
     },
     studentuser() {
       return this.$store.getters["auth/tutoruser"];
-    }
+    },
   },
   async created() {
     axios
-      .get("http://localhost:1337/announcementposts/" + this.$route.params.id)   //get ตาราง announcementposts ที่มี id ตามที่กดมา
-      .then(res => {
-        this.announcementposts = res.data;      
+      .get("http://localhost:1337/announcementposts/" + this.$route.params.id) //get ตาราง announcementposts ที่มี id ตามที่กดมา
+      .then((res) => {
+        this.announcementposts = res.data;
         this.detail = res.data.detail;
+        this.rating = this.announcementposts.meanRating;
         console.log("get announcementposts success");
         axios
           .get(
             "http://localhost:1337/users?username=" +
               this.announcementposts.username
           ) //get ตารางusers โดยใช้ username ให้ตรงกับ username ในตาราง announcementposts
-          .then(Response => {
+          .then((Response) => {
             this.turorInformation = Response.data[0];
             console.log(this.turorInformation);
             console.log(
@@ -170,19 +229,18 @@ export default {
           });
       });
     if (this.username) {
-      axios
-        .get(
-          "http://localhost:1337/orders?status_in=waiting&studentusername_in=" +
-            this.username +
-            "&postId_in=" +
-            this.$route.params.id
-        ) //ตราราง orders ที่มี status = waiting & studentusername this.username(คนที่login อยู่) & postId = id โพสประกาศ
-        // .then(Response => {
-        //   this.orderpostid = Response.data[0];
-        //   this.postid = Response.data[0].postId; //เอาไปเช็ค เดิมๆมีอยู่ไหม
-        //   console.log("postid:" + this.postid);
-        // }
-        // );
+      axios.get(
+        "http://localhost:1337/orders?status_in=waiting&studentusername_in=" +
+          this.username +
+          "&postId_in=" +
+          this.$route.params.id
+      ); //ตราราง orders ที่มี status = waiting & studentusername this.username(คนที่login อยู่) & postId = id โพสประกาศ
+      // .then(Response => {
+      //   this.orderpostid = Response.data[0];
+      //   this.postid = Response.data[0].postId; //เอาไปเช็ค เดิมๆมีอยู่ไหม
+      //   console.log("postid:" + this.postid);
+      // }
+      // );
     }
   },
   methods: {
@@ -194,9 +252,9 @@ export default {
             studentusername: this.studentuser.username,
             status: "waiting",
             postid: this.$route.params.id,
-            announcementpost: this.announcementposts
+            announcementpost: this.announcementposts,
           })
-          .then(res => {
+          .then((res) => {
             console.log(res.data);
             this.$router.push("/studentmanage");
           });
@@ -208,8 +266,8 @@ export default {
     hideModal() {
       this.$refs["my-modal"].hide();
       this.$router.push("/studentmanage");
-    }
-  }
+    },
+  },
 };
 </script>
 

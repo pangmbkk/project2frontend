@@ -1,28 +1,42 @@
 <template>
   <div class="container">
-    <div>{{tutoruser}}</div>
+    <!-- <div>{{ profile }}</div> -->
     <h2 class="text-center">แก้ไขโปรไฟล์</h2>
-    <form >
+    <form>
       <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
+        <label for="exampleInputEmail1"
+          >Email : <b>{{ email }}</b></label
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">ชื่อ</label>
+        <input type="fname" class="form-control" id="fname" v-model="fname" />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">นามสกุล</label>
+        <input type="lname" class="form-control" id="lname" v-model="lname" />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">เบอร์ติดต่อ</label>
+        <input type="phone" class="form-control" id="phone" v-model="phone" />
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">ประวัติการศึกษา</label>
         <input
-          type="email"
+          type="education"
           class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          v-model="email"
+          id="education"
+          v-model="education"
         />
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">ชื่อขนามสกุล</label>
-        <input type="username" class="form-control" id="username" v-model="username" />
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" v-model="password" />
-      </div>
 
-      <button type="submit" class="btn btn-primary" v-on:click.stop.prevent="onEdit()">แก้ไข</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        v-on:click.stop.prevent="onEdit()"
+      >
+        แก้ไข
+      </button>
     </form>
   </div>
 </template>
@@ -36,32 +50,46 @@ export default {
   computed: {
     tutoruser() {
       return this.$store.getters["auth/tutoruser"];
-    }
+    },
   },
   data() {
     return {
-      username: "",
+      fname: "",
+      lname: "",
       email: "",
-      password: ""
+      phone: "",
+      education: "",
+      profile: "",
     };
   },
   async created() {
-    this.email = this.tutoruser.email;
-    this.username = this.tutoruser.username;
+    axios
+      .get("http://localhost:1337/users/" + this.tutoruser.id)
+      .then((response) => {
+        this.profile = response.data;
+        this.email = response.data.email;
+        this.fname = response.data.fname;
+        this.lname = response.data.lname;
+        this.phone = response.data.phone;
+        this.education = response.data.education;
+        console.log("user profile");
+      });
   },
-  methodes: {
+  methods: {
     onEdit() {
       axios
-        .put("http://localhost:1337/user?username=" + this.tutoruser.username, {
-          username: this.username,
-          password: this.password,
-          email: this.email
+        .put("http://localhost:1337/users/" + this.tutoruser.id, {
+          fname: this.fname,
+          lname: this.lname,
+          phone: this.phone,
+          education: this.education,
         })
-        .then(response => {
+        .then((response) => {
           console.log(response);
+          this.$router.back();
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

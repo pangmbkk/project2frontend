@@ -20,6 +20,16 @@
           <div class="col-auto">
             <h4>ประกาศของ</h4>
             <p class="card-text">{{ listsearch.tutorName ||'No description provided' }}</p>
+            <label for="rating"><h4>Rating:</h4></label>
+            <b-form-rating
+                  id="rating-inline"
+                  inline
+                  v-model="listsearch.meanRating"
+                  readonly
+                  show-value
+                  no-border
+                  precision="2"
+                ></b-form-rating>
           </div>
         </div>
     </div>
@@ -34,5 +44,7 @@ export default {
 </script>
 
 <style scoped>
-
+img{
+  height: 8rem;
+}
 </style>

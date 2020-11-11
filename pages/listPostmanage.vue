@@ -5,29 +5,27 @@
         <div class="container-fluid">
           <div class="container">
             <br />
-            <div class="row">
-              <div class="col-md">
-                <br />
-                <h2 class="text-center">รายการโพสประกาศ</h2>
-                <br />
-                <div class="router">
-                  <Listpost
-                    class="router"
-                    v-for="listpost in listposts"
-                    :key="listpost.id"
-                    :id="listpost.id"
-                    :listpost="listpost"
-                  />
-                </div>
-                <br />
-              </div>
+            <br />
+            <h2 class="text-center">รายการโพสประกาศ</h2>
+            <br />
+            <br />
+            <div class="router">
+              <Listpost
+                class="router"
+                v-for="listpost in listposts"
+                :key="listpost.id"
+                :id="listpost.id"
+                :listpost="listpost"
+              />
             </div>
-          </div>
-          <div class="text-center">
-            <nuxt-link :to="'form'" style="text-decoration: none;
-  color: white;">
-              <b-button squared variant="info">เพิ่มโพสประกาศ</b-button>
-            </nuxt-link>
+            <br />
+            <br />
+            <div class="text-center">
+              <b-button to="form" squared variant="info">เพิ่มโพสประกาศ</b-button>
+            </div>
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </b-tab>
@@ -35,17 +33,19 @@
         <div class="container-fluid">
           <div class="container">
             <br />
-            <div class="row">
-              <div class="col-md">
-                <br />
-                <h2 class="text-center">รายการทีรอการตอบรับ</h2>
-                <br />
-                <div class="router">
-                  <Tutorwaiting :tutorwaitings="tutorwaitings" />
-                </div>
-                <br />
-              </div>
+            <br />
+            <h2 class="text-center">รายการทีรอการตอบรับ</h2>
+            <br />
+            <br />
+            <div class="router">
+              <Tutorwaiting :tutorwaitings="tutorwaitings" />
             </div>
+            <br />
+            <br />
+
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </b-tab>
@@ -53,17 +53,18 @@
         <div class="container-fluid">
           <div class="container">
             <br />
-            <div class="row">
-              <div class="col-md">
-                <br />
-                <h2 class="text-center">รายการทีกำลังดำเนินการ</h2>
-                <br />
-                <div class="router">
-                  <DoingTutor :doingTutors="doingTutors" />
-                </div>
-                <br />
-              </div>
+            <br />
+            <h2 class="text-center">รายการทีกำลังดำเนินการ</h2>
+            <br />
+            <br />
+            <div class="router">
+              <DoingTutor :doingTutors="doingTutors" />
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </b-tab>
@@ -71,23 +72,39 @@
         <div class="container-fluid">
           <div class="container">
             <br />
-            <div class="row">
-              <div class="col-md">
-                <br />
-                <h2 class="text-center">รายการทีติวเสร็จแล้ว</h2>
-                <br />
-                <div class="router">
-                  <DoneTutor :doneTutors="doneTutors" />
-                </div>
-                <br />
-              </div>
+            <br />
+            <h2 class="text-center">รายการทีติวเสร็จแล้ว</h2>
+            <br />
+            <br />
+            <div class="router">
+              <DoneTutor :doneTutors="doneTutors" />
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           </div>
         </div>
       </b-tab>
       <b-tab title="รายการที่ยกเลิกแล้ว" class="body" :title-link-class="linkClass(4)">
-        <br />
-        <p>I'm a disabled tab!</p>
+        <div class="container-fluid">
+          <div class="container">
+            <br />
+            <br />
+            <h2 class="text-center">รายการทีติวเสร็จแล้ว</h2>
+            <br />
+            <br />
+            <div class="router">
+              <CancleTutor :cancleTutors="cancleTutors" />
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </div>
       </b-tab>
     </b-tabs>
   </div>
@@ -156,6 +173,7 @@ export default {
       .get("http://localhost:1337/announcementposts?username=" + this.username)
       .then((response) => {
         this.listposts = response.data; // โพสประกาศที่ ติวเตอร์สร้างขึ้น
+        console.log(this.listposts)
         console.log("get Announcementposts success");
       });
     axios

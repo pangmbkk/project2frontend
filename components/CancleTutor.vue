@@ -4,39 +4,53 @@
       <hr />
       <div class="row pointer">
         <div class="col-md-3">
-          <nuxt-link :to="'detail/' + cancleTutor.postId">
-            <img class="card-img-left img-fluid" :src="cancleTutor.announcement[0].imageUrl" alt />
+          <nuxt-link :to="'detail/' + cancleTutor.announcementpost.id">
+            <img
+              class="card-img-left img-fluid"
+              :src="cancleTutor.announcementpost.imageUrl"
+              alt
+            />
           </nuxt-link>
         </div>
 
         <div class="col">
           <nuxt-link
-            :to="'detail/' + cancleTutor.postId"
-            style="text-decoration: none;
-  color: black;"
+            :to="'detail/' + cancleTutor.announcementpost.id"
+            style="text-decoration: none; color: black"
           >
-            <h4 class="title">{{cancleTutor.announcement[0].name}}</h4>
+            <h4 class="title">{{ cancleTutor.announcementpost.name }}</h4>
 
-            <p>{{cancleTutor.announcement[0].description}}</p>
+            <p>{{ cancleTutor.announcementpost.description }}</p>
           </nuxt-link>
         </div>
 
         <div class="col-2-auto">
           <nuxt-link
-            :to="'detail/' + cancleTutor.postId"
-            style="text-decoration: none;
-  color: black;"
+            :to="'detail/' + cancleTutor.announcementpost.id"
+            style="text-decoration: none; color: black"
           >
             <h4>ประกาศของ</h4>
-            <p
-              class="card-text"
-            >{{ cancleTutor.announcement[0].tutorName ||'No description provided' }}</p>
+            <p class="card-text">
+              {{
+                cancleTutor.announcementpost.tutorName ||
+                "No description provided"
+              }}
+            </p>
           </nuxt-link>
+          <label for="rating"><h4>Rating:</h4></label>
+          <b-form-rating
+            id="rating-inline"
+            inline
+            v-model="cancleTutor.announcementpost.meanRating"
+            readonly
+            show-value
+            no-border
+            precision="2"
+          ></b-form-rating>
         </div>
 
         <div class="col-auto">
-          <button class="btn btn-success">ตอบรับ</button>
-          <button class="btn btn-danger">ยกเลิก</button>
+          <button class="btn btn-danger">ลบ</button>
         </div>
       </div>
     </div>
@@ -51,7 +65,11 @@ const apiUrl = process.env.API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 export default {
   name: "CancleTutor",
-  props: ["cancleTutors", "id"]
+  props: ["cancleTutors", "id"],
 };
 </script>
-
+<style  scoped>
+img {
+  height: 10rem;
+}
+</style>

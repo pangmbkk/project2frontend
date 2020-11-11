@@ -9,7 +9,6 @@
         <b-navbar-nav>
           <b-nav-item href="http://localhost:3000/">หน้าหลัก</b-nav-item>
           <b-nav-item href="http://localhost:3000/search">ค้นหาติวเตอร์</b-nav-item>
-          <b-nav-item href="http://localhost:3000">วิชาเรียน</b-nav-item>
           <b-nav-item href="http://localhost:3000/about">เกี่ยวกับเว็บไซต์</b-nav-item>
         </b-navbar-nav>
 

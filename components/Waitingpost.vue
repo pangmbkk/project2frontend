@@ -4,14 +4,14 @@
       <hr />
       <div class="row pointer">
         <div class="col-md-3">
-          <nuxt-link :to="'detail/' + waitingpost.postId">
+          <nuxt-link :to="'detail/' + waitingpost.announcementpost.id">
             <img class="card-img-left img-fluid" :src=" waitingpost.announcementpost.imageUrl" alt />
           </nuxt-link>
         </div>
 
         <div class="col">
           <nuxt-link
-            :to="'detail/' + waitingpost.postId"
+            :to="'detail/' + waitingpost.announcementpost.id"
             style="text-decoration: none;
   color: black;"
           >
@@ -23,15 +23,25 @@
 
         <div class="col-auto">
           <nuxt-link
-            :to="'detail/' + waitingpost.postId"
+            :to="'detail/' + waitingpost.announcementpost.id"
             style="text-decoration: none;
   color: black;"
           >
-            <h4>ประกาศของ</h4>
+            <label for="tutorname"><h4>ประกาศของ</h4></label>
             <p
               class="card-text"
             >{{ waitingpost.announcementpost.tutorName ||'No description provided' }}</p>
           </nuxt-link>
+          <label for="rating"><h4>Rating:</h4></label>
+          <b-form-rating
+            id="rating-inline"
+            inline
+            v-model="waitingpost.announcementpost.meanRating"
+            readonly
+            show-value
+            no-border
+            precision="2"
+          ></b-form-rating>
         </div>
 
         <div class="col-auto">
@@ -70,5 +80,9 @@ export default {
   },
 };
 </script>
-
+<style  scoped>
+img{
+  height: 10rem;
+}
+</style>
 

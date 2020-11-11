@@ -19,16 +19,22 @@
       </b-form-group>
 
       <b-form-group id="input-group-3" label="Rating:" label-for="input-3">
-        <b-form-rating id="input-3" v-model="form.rating" variant="warning" class="mb-2" required></b-form-rating>
+        <b-form-rating
+          id="input-3"
+          v-model="form.rating"
+          variant="warning"
+          class="mb-2"
+          required
+        ></b-form-rating>
         <p class="mt-2">Value: {{ form.rating }}</p>
       </b-form-group>
 
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
-    <b-card class="mt-3" header="Form Data Result">
+    <!-- <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
-    </b-card>
+    </b-card> -->
   </div>
 </template>
 
@@ -45,19 +51,52 @@ export default {
         rating: null,
       },
       show: true,
+      meanRating: "",
     };
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
       console.log(JSON.stringify(this.form));
-      axios.put(apiUrl + "/orders/" + this.$route.params.id, {
-        review:this.form.review,
-        rating:this.form.rating
-      }).then(res => {
-        console.log(res)
-      })
+      axios
+        .put(apiUrl + "/orders/" + this.$route.params.id, {
+          review: this.form.review,
+          rating: this.form.rating,
+        })
+        .then((res) => {
+          console.log(res.data);
+          axios
+            .get(
+              apiUrl +
+                "/orders/?announcementpost.id_in=" +
+                res.data.announcementpost.id +
+                "&doingstatus_in=true"
+            )
+            .then((response) => {
+              let sum = 0;
+              console.log("จำนวนobj ใน array = " + response.data.length); //ทดสอบนับจำนวนobjใน array
+              for (let elm of response.data) {
+                //วนในorderของโพสประกาสไอดีนั้นๆ
+                sum += elm.rating;
+                this.meanRating = sum / response.data.length;
+              }
+              console.log(this.meanRating);
+              axios
+                .put(
+                  apiUrl + "/announcementposts/" + res.data.announcementpost.id,
+                  {
+                    meanRating: this.meanRating,
+                  }
+                )
+                .then((response2) => {
+                  console.log(response2);
+
+                });
+            });
+        });
+
       alert(JSON.stringify(this.form));
+      this.$router.back()
     },
     onReset(evt) {
       evt.preventDefault();

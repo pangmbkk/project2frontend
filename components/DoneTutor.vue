@@ -4,14 +4,14 @@
       <hr />
       <div class="row pointer">
         <div class="col-md-3">
-          <nuxt-link :to="'detail/' + doneTutor.postId">
+          <nuxt-link :to="'detail/' + doneTutor.announcementpost.id">
             <img class="card-img-left img-fluid" :src="doneTutor.announcementpost.imageUrl" alt />
           </nuxt-link>
         </div>
 
         <div class="col">
           <nuxt-link
-            :to="'detail/' + doneTutor.postId"
+            :to="'detail/' + doneTutor.announcementpost.id"
             style="text-decoration: none;
   color: black;"
           >
@@ -23,7 +23,7 @@
 
         <div class="col-2-auto">
           <nuxt-link
-            :to="'detail/' + doneTutor.postId"
+            :to="'detail/' + doneTutor.announcementpost.id"
             style="text-decoration: none;
   color: black;"
           >
@@ -32,11 +32,19 @@
               class="card-text"
             >{{ doneTutor.announcementpost.tutorName ||'No description provided' }}</p>
           </nuxt-link>
+          <label for="rating"><h4>Rating:</h4></label>
+          <b-form-rating
+            id="rating-inline"
+            inline
+            v-model="doneTutor.announcementpost.meanRating"
+            readonly
+            show-value
+            no-border
+            precision="2"
+          ></b-form-rating>
         </div>
 
         <div class="col-auto">
-          <button class="btn btn-success">ตอบรับ</button>
-          <button class="btn btn-danger">ยกเลิก</button>
         </div>
       </div>
     </div>
@@ -54,4 +62,8 @@ export default {
   props: ["doneTutors", "id"]
 };
 </script>
-
+<style  scoped>
+img{
+  height: 10rem;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <div class="col-md-6 offset-md-3 mt-3">
-      <form autocomplete="off" @submit.stop.prevent="handleSubmit">
+      <form autocomplete="on" @submit.stop.prevent="handleSubmit">
         <div class="form-group">
           <label for="username">Username</label>
           <b-form-input
